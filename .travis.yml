@@ -7,20 +7,3 @@ before_install:
    
 script:
   - docker run stevensp123/docker-test npm run test -- --coverage
-  
-after_success:
-  - docker build -t stevensp123/multi-client ./client
-  - docker build -t stevensp123/multi-nginx ./nginx
-  - docker build -t stevensp123/multi-server ./server
-  - docker build -t stevensp123/multi-worker ./worker
-  
-# Log in to the docker CLI
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID"  --password-stdin
-
-# Take those images and push them to docker hub
-- docker push stevensp123/multi-client stevensp123/multi-server
-
-  - docker push stevensp123/multi-client
-  - docker push stevensp123/multi-nginx
-  - docker push stevensp123/multi-server
-  - docker push stevensp123/multi-worker
