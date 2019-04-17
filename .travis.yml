@@ -1,12 +1,12 @@
 sudo: required
 services:
   - docker
-  
+   
 before_install:
-  - docker build -t stevensp123/react-test1 -f ./client/Dockerfile.dev ./client
-  
+  - docker build -t stevensp123/docker-test -f ./client/Dockerfile.dev ./client
+   
 script:
-  - docker run stevensp123/react-test1 npm run test --  --coverage
+  - docker run stevensp123/docker-test npm run test -- --coverage
   
 after_success:
   - docker build -t stevensp123/multi-client ./client
